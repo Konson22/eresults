@@ -19,7 +19,7 @@ export default function Navbar() {
       <div className="flex items-center justify-between md:px-[8%] px-4 md:py-5 py-3 shadow-md">
         <Logo />
         <SocialMedia />
-        <div className="md:hidden flex items-center text-sky-600 text-2xl">
+        <div className="md:hidden flex items-center text-green-600 text-2xl">
           <span className="">
             <FiSearch />
           </span>
@@ -38,14 +38,14 @@ export default function Navbar() {
 
 export function MobileNavbar() {
   return (
-    <div className="flex items-center justify-between fixed bottom-0 left-0 right-0 h-[3.5rem] bg-sky-600 text-white px-5">
+    <div className="flex items-center justify-between fixed bottom-0 left-0 right-0 h-[3.5rem] bg-green-600 text-white px-5">
       <Link className="text-2xl" to="/">
         <FiHome />
       </Link>
       <Link className="text-2xl" to="/learning-materials">
         <FiBookOpen />
       </Link>
-      <Link className="text-2xl border-4 border-white bg-sky-600 rounded-full p-3 -mt-5">
+      <Link className="text-2xl border-4 border-white bg-green-600 rounded-full p-3 -mt-5">
         <FiUpload />
       </Link>
       <Link className="text-2xl" to="/friends">

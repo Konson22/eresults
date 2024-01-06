@@ -6,7 +6,7 @@ import { navigationLinksData } from "../../assets/data";
 
 export default function MainNavigation() {
   return (
-    <div className="bg-sky-600 text-white px-[8%]">
+    <div className="bg-green-600 text-white px-[8%]">
       <ul className="md:flex hidden">
         {navigationLinksData.map((link) =>
           link.subLinks ? <SubLink link={link} /> : <NavLink link={link} />
