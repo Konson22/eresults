@@ -22,7 +22,7 @@ export default function Appbar() {
         <Logo />
         <SocialMedia />
       </div>
-      <div className="bg-sky-800 text-white md:flex hidden items-center justify-between md:px-[8%] px-4 md:py-0 py-3">
+      <div className="bg-green-800 text-white md:flex hidden items-center justify-between md:px-[8%] px-4 md:py-0 py-3">
         <span
           className="md:hidden block text-2xl rotate-90 relative"
           onClick={toggleMenu}
