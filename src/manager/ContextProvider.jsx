@@ -5,6 +5,7 @@ const contextApi = createContext();
 
 export default function CotextProvider({ children }) {
   const [isLoading, setIsLoading] = useState(false);
+  const [showForms, setShowForms] = useState(null);
   const [message, setMessage] = useState("");
 
   useEffect(() => {
@@ -34,12 +35,11 @@ export default function CotextProvider({ children }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const getResults = (index, centerIndex) => {};
-
   const values = {
     isLoading,
     message,
-    getResults,
+    showForms,
+    setShowForms,
   };
   return <contextApi.Provider value={values}>{children}</contextApi.Provider>;
 }

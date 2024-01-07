@@ -1,18 +1,48 @@
+import SocialMedia from "./SocialMedia";
+import { FiBarChart2, FiChevronDown, FiSearch, FiUser } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { FiChevronDown } from "react-icons/fi";
-import { useState } from "react";
 import { navigationLinksData } from "../../assets/data";
+import { useState } from "react";
+import MobileNavMenu from "./MobileNavMenu";
+import { useContextApi } from "../../manager/ContextProvider";
 
 export default function MainNavigation() {
+  const { setShowForms } = useContextApi();
+  const [openMenu, setOpenMenu] = useState(false);
+
+  const toggleMenu = () => setOpenMenu(!openMenu);
   return (
-    <div className="bg-green-600 text-white px-[8%]">
-      <ul className="md:flex hidden">
-        {navigationLinksData.map((link) =>
-          link.subLinks ? <SubLink link={link} /> : <NavLink link={link} />
-        )}
-      </ul>
-    </div>
+    <>
+      <div className="flex items-center justify-between md:px-[8%] px-4 md:py-5 py-3 shadow-md">
+        <div className="md:h-16 h-9 mr-2">
+          <img
+            src={process.env.PUBLIC_URL + "/images/eresults-logo3.png"}
+            alt=""
+          />
+        </div>
+        <SocialMedia />
+        <div className="md:hidden flex items-center text-green-600 text-2xl">
+          <span className="">
+            <FiSearch />
+          </span>
+          <span className="mx-4" onClick={() => setShowForms("login")}>
+            <FiUser />
+          </span>
+          <span className="-rotate-90 relative" onClick={toggleMenu}>
+            <FiBarChart2 />
+          </span>
+        </div>
+      </div>
+      <div className="bg-green-600 text-white px-[8%]">
+        <ul className="md:flex hidden">
+          {navigationLinksData.map((link) =>
+            link.subLinks ? <SubLink link={link} /> : <NavLink link={link} />
+          )}
+        </ul>
+      </div>
+      <MobileNavMenu openMenu={openMenu} toggleMenu={toggleMenu} />
+    </>
   );
 }
 

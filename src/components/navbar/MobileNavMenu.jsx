@@ -6,23 +6,20 @@ import { useState } from "react";
 
 const menuVars = {
   initial: {
-    // scaleY: 0,
     clipPath: "circle(0.4% at 0 0)",
   },
   animate: {
-    // scaleY: 1,
     clipPath: "circle(140.5% at 99% 0)",
     transition: {
-      duration: 0.8,
+      duration: 0.5,
       ease: [0.12, 0, 0.39, 0],
     },
   },
   exit: {
-    // scaleY: 0,
     clipPath: "circle(0.4% at 0 0)",
     transition: {
-      delay: 0.3,
-      duration: 0.9,
+      delay: 0.5,
+      duration: 0.5,
       ease: [0.22, 1, 0.36, 1],
     },
   },
@@ -43,7 +40,8 @@ const containerVars = {
     },
   },
 };
-export default function MobileNav({ openMenu, toggleMenu }) {
+
+export default function MobileNavMenu({ openMenu, toggleMenu }) {
   return (
     <AnimatePresence>
       {openMenu && (
@@ -52,7 +50,7 @@ export default function MobileNav({ openMenu, toggleMenu }) {
           initial="initial"
           animate="animate"
           exit="exit"
-          className="h-screen w-full absolute right-0 top-0 z-50 bg-white text-gray-700 px-6 py-4"
+          className="h-screen w-full origin-top fixed right-0 top-0 z-50 bg-white text-gray-700 px-6 py-4"
         >
           <div className="flex items-center justify-between">
             <span className="text-2xl">Menu</span>
@@ -125,7 +123,7 @@ const MobileNavLink = ({ link, toggleMenu }) => {
                   to={subl.path}
                   onClick={toggleMenu}
                 >
-                  {subl.text}
+                  {subl.title}
                 </Link>
               ))}
             </div>
