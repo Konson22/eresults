@@ -1,18 +1,21 @@
 export const scaleInVariants = {
   initial: {
-    scaleY: 0,
+    opacity: 0,
+    y: -20,
   },
   animate: {
-    scaleY: 1,
+    y: 0,
+    opacity: 1,
     transition: {
       duration: 0.2,
       ease: [0.12, 0, 0.39, 0],
     },
   },
   exit: {
-    scaleY: 0,
+    y: -20,
+    opacity: 0,
     transition: {
-      duration: 0.1,
+      duration: 0.2,
       ease: [0.12, 0, 0.39, 0],
     },
   },
