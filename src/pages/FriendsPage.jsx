@@ -1,9 +1,10 @@
 import { FiMail } from "react-icons/fi";
 import BackBtn from "../util/BackBtn";
+import AnimatePage from "../components/AnimatePage";
 
 export default function FriendsPage() {
   return (
-    <div className="px-4 py-4">
+    <AnimatePage cName="px-4 py-4">
       <div className="flex items-center justify-between">
         <div className="flex items-center">
           <BackBtn />
@@ -30,7 +31,7 @@ export default function FriendsPage() {
           </div>
         ))}
       </div>
-    </div>
+    </AnimatePage>
   );
 }
 

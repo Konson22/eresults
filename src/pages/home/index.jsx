@@ -1,11 +1,12 @@
+import AnimatePage from "../../components/AnimatePage";
 import Header from "./Header";
 import RelatedBookSection from "./RelatedBookSection";
 
 export default function HomePage() {
   return (
-    <div>
+    <AnimatePage>
       <Header />
       <RelatedBookSection />
-    </div>
+    </AnimatePage>
   );
 }

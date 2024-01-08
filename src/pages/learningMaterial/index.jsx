@@ -3,32 +3,35 @@ import { FiFileText, FiVideo } from "react-icons/fi";
 import { Heading2 } from "../../util/Headings";
 import { Link } from "react-router-dom";
 import PaperCard from "../../components/PaperCard";
+import AnimatePage from "../../components/AnimatePage";
 
 export default function LearningMaterialPage() {
   return (
-    <div className="px-4 my-4">
-      <div className="grid grid-cols-2 gap-4">
-        {data.map((item) => (
-          <Link
-            to={item.path}
-            className="bg-gray-100 flex items-center rounded-md text-center p-3"
-          >
-            <div
-              className={`text-2xl mr-2 rounded-full p-2 ${item.bg} text-white`}
+    <AnimatePage>
+      <div className="px-4 my-4">
+        <div className="grid grid-cols-2 gap-4">
+          {data.map((item) => (
+            <Link
+              to={item.path}
+              className="bg-gray-100 flex items-center rounded-md text-center p-3"
             >
-              {item.icon}
-            </div>
-            <h3 className="text-sm">{item.title}</h3>
-          </Link>
-        ))}
-      </div>
-      <div className="mt-4">
-        <Heading2 text="Recently Shred" />
-        <div className="mt-3">
-          <PaperCard files={materials} />
+              <div
+                className={`text-2xl mr-2 rounded-full p-2 ${item.bg} text-white`}
+              >
+                {item.icon}
+              </div>
+              <h3 className="text-sm">{item.title}</h3>
+            </Link>
+          ))}
+        </div>
+        <div className="mt-4">
+          <Heading2 text="Recently Shred" />
+          <div className="mt-3">
+            <PaperCard files={materials} />
+          </div>
         </div>
       </div>
-    </div>
+    </AnimatePage>
   );
 }
 
@@ -47,7 +50,7 @@ const data = [
   },
   {
     title: "Books",
-    path: "/pass-papers",
+    path: "/books",
     icon: <FaUser />,
     bg: "bg-green-400",
   },
@@ -55,7 +58,7 @@ const data = [
     title: "Vidoes",
     path: "/pass-papers",
     icon: <FiVideo />,
-    bg: "bg-pink-400",
+    bg: "/vidoes",
   },
 ];
 

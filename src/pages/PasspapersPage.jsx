@@ -1,11 +1,11 @@
-import { Heading2 } from "../util/Headings";
 import PaperCard from "../components/PaperCard";
 import { FiFilter } from "react-icons/fi";
 import BackBtn from "../util/BackBtn";
+import AnimatePage from "../components/AnimatePage";
 
 export default function PasspapersPage() {
   return (
-    <div className="rounded-md p-4">
+    <AnimatePage cName="rounded-md p-4">
       <div className="flex items-center justify-between">
         <div className="flex items-center">
           <BackBtn />
@@ -19,7 +19,7 @@ export default function PasspapersPage() {
       <div className="mt-6">
         <PaperCard files={materials} />
       </div>
-    </div>
+    </AnimatePage>
   );
 }
 
