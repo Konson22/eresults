@@ -48,7 +48,6 @@ export default function Books() {
     <AnimatePage cName="md:px-[10%] px-5 mt-4">
       <SearchBar handleSearch={handleSearch} />
       <div className="grid md:grid-cols-4 grid-cols-1 gap-5 mt-4">
-        {message && <span className="p-14 text-xl">{message}</span>}
         {isLoading && <span className="p-14 text-xl">Loading...</span>}
         {!isLoading &&
           books.length > 0 &&
