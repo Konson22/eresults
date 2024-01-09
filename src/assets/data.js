@@ -45,7 +45,7 @@ export const learningMaterial = [
 
 
 export const navigationLinksData = [
-    { title: "Home", path: "/" },
+    { title: "Home", path: "/home" },
     { title: "Learning materials", path: "/learning-materials"},
     { title: "Books", path: "/", subLinks: learningMaterial },
     { title: "Blog", path: "/" },

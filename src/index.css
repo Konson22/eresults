@@ -13,3 +13,7 @@ img {
     background-image: url('./assets/svg/wave-haikei.svg');
     background-size: cover;
 }
+
+.clip {
+    clip-path: ellipse(180% 95% at 50% 0%);
+}

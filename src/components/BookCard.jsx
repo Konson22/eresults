@@ -3,7 +3,7 @@ import { FaDownload } from "react-icons/fa";
 export default function BookCard({ book }) {
   return (
     <div className="border bg-gray-50">
-      <div className="md:h-[200px]">
+      <div className="md:h-[200px] min-h-[200px] bg-gray-200">
         {book.volumeInfo.imageLinks && (
           <img src={book.volumeInfo.imageLinks.thumbnail} alt="" />
         )}
