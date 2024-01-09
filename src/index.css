@@ -8,3 +8,8 @@ img {
     width: 100%;
     height: 100%;
 }
+
+.form-bg {
+    background-image: url('./assets/svg/wave-haikei.svg');
+    background-size: cover;
+}

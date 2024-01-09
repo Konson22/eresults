@@ -6,7 +6,7 @@ import UploadForm from "./UploadForm";
 
 export default function AuthForms({ showForms, setShowForms }) {
   return (
-    <div className="fixed inset-0 z-50 overflow-y-scroll max-h-screen bg-white/70 backdrop-blur-sm flex items-center justify-center">
+    <div className="fixed inset-0 z-50 overflow-y-scroll max-h-screen bg-white flex items-center justify-center">
       {showForms === "login" && <LoginForm setShowForms={setShowForms} />}
       {showForms === "signup" && <SignUpForm setShowForms={setShowForms} />}
       {showForms === "upload" && <UploadForm setShowForms={setShowForms} />}

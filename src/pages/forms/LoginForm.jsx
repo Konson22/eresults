@@ -6,14 +6,9 @@ import AnimatePage from "../../components/AnimatePage";
 
 export default function LoginForm({ setShowForms }) {
   return (
-    <AnimatePage cName="md:w-[40%] w-[85%] bg-green-500 text-white rounded-lg px-5 pb-5 relative">
+    <AnimatePage cName="md:w-[40%] w-full relative px-5">
       <CloseForm />
-      <div className="text-center">
-        <div className="bg-white text-green-600 w-16 h-16 flex items-center justify-center rounded-full text-3xl p-2 mx-auto -mt-6 mb-1">
-          <FiUser />
-        </div>
-        <span className="text-2xl block mb-4">Login</span>
-      </div>
+      <span className="text-2xl block mb-4">Login</span>
       <form>
         <Input name="email" placeholder="E-mail" type="email" />
         <Input name="password" placeholder="Password" type="email" />
