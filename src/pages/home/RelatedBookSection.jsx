@@ -4,7 +4,7 @@ import Carousel from "react-elastic-carousel";
 import axios from "axios";
 
 const breakPoints = [
-  { width: 0, itemsToShow: 2, itemPadding: [0, 2] },
+  { width: 0, itemsToShow: 2, itemPadding: [0, 4] },
   {
     width: 550,
     itemsToShow: 1,

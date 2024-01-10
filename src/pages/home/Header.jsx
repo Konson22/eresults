@@ -38,10 +38,10 @@ export default function Header() {
           {data.map((item) => (
             <Link
               to={item.path}
-              className={`${item.bg} shadow-sm rounded-md text-center px-2 py-4`}
+              className={`${item.bg} shadow-sm rounded-md text-center px-2 py-5`}
             >
               <div
-                className={`md:text-6xl text-3xl mx-auto w-max ${item.text}`}
+                className={`md:text-6xl text-4xl mx-auto w-max ${item.text}`}
               >
                 {item.icon}
               </div>
