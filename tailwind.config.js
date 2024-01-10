@@ -6,25 +6,15 @@ module.exports = {
   theme: {
     extend: {
       colors:{
-        primary:'rgb(88,212,240)',
-        greencl:'rgb(31,207,167)',
-        cl1:'rgb(234, 0, 255)',
-        cl2:'rgb(217, 255, 0)',
-        cl3:'rgb(234, 0, 255)',
+        // cl1:'rgb(201,168,75)',
+        cl1:'rgb(155,112,191)',
+        rd:'rgb(130, 40, 39)',
+        cl2:'rgb(249,140,145)',
+        cl3:'rgb(88,212,240)',
+        cl4:'rgb(237, 32, 119)',
+        cl5:'rgb(135,92,172)',
       }
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/forms'),],
 }
-
-
-// /** @type {import('tailwindcss').Config} */
-
-// module.exports = {
-//   content: ["./src/**/*.{html, jsx, tsx, js}"],
-//   theme: {
-//     extend: {},
-//   },
-//   plugins: [],
-// }
-

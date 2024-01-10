@@ -1,25 +1,79 @@
-import SearchBar from "../../components/SearchBar";
+import { FiBookOpen, FiFileText } from "react-icons/fi";
+import { Link } from "react-router-dom";
+import { FaBriefcase } from "react-icons/fa";
+import Navbar from "../../components/nabvar";
 
 export default function Header() {
   return (
-    <header
-      className="md:h-[75vh] flex items-center md:px-[8%] px-4 md:py-0 py-16"
-      style={{
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${
-          process.env.PUBLIC_URL + "/images/kids-learning3.jpg"
-        })`,
-        backgroundPosition: "right",
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-      }}
-    >
-      <div className="md:w-[60%] text-center text-white">
-        <h1 className="md:text-6xl text-3xl font-bold">Learn & share</h1>
-        <p className="md:text-4xl">
-          Your Learing is your duty for better future
-        </p>
-        <SearchBar />
+    <header className="mb-14">
+      <div className="relative">
+        <div
+          className="px-4 pt-2 pb-20 clip text-white "
+          style={{
+            backgroundImage: `linear-gradient(rgba(7, 130, 179, 0.8), rgba(7, 130, 179, 0.8)), url(${
+              process.env.PUBLIC_URL + "/images/kids-learning.jpg"
+            })`,
+            backgroundSize: "cover",
+          }}
+        >
+          <Navbar />
+          <h1 className="text-2xl my-3 text-center mt-10">
+            Your gateway to success
+          </h1>
+          {/* <h1 className="text-2xl my-3">Learn anytime and anywhere</h1> */}
+          {/* <h1 className="text-2xl my-3">Discover a new world of learning.</h1> */}
+          {/* <h1 className="text-2xl my-3">Learn from anywhere, anytime.</h1> */}
+          <div className="h-[2.8rem] bg-white text-gray-700 flex rounded-md overflow-hidden p-1 mt-2">
+            <input
+              className="h-full w-full bg-transparent border-none focus:border-none focus:outline-none px-3"
+              type="search"
+              placeholder="Index No"
+            />
+            <button className="bg-green-600 text-white rounded-md px-3">
+              Check
+            </button>
+          </div>
+        </div>
+        <div className="grid md:grid-cols-3 grid-cols-3 gap-2 px-3 absolute inset-0 top-[80%]">
+          {data.map((item) => (
+            <Link
+              to={item.path}
+              className={`${item.bg} shadow-sm rounded-md text-center px-2 py-4`}
+            >
+              <div
+                className={`md:text-6xl text-3xl mx-auto w-max ${item.text}`}
+              >
+                {item.icon}
+              </div>
+              <h3 className="text-sm">{item.title}</h3>
+            </Link>
+          ))}
+        </div>
       </div>
     </header>
   );
 }
+
+const data = [
+  {
+    title: "My Files",
+    path: "/my-files",
+    icon: <FaBriefcase />,
+    bg: "bg-amber-100",
+    text: "text-amber-500",
+  },
+  {
+    title: "Pass papers",
+    path: "/pass-papers",
+    icon: <FiFileText />,
+    bg: "bg-rose-100",
+    text: "text-rose-500",
+  },
+  {
+    title: "Books",
+    path: "/books",
+    icon: <FiBookOpen />,
+    bg: "bg-green-100",
+    text: "text-green-500",
+  },
+];
