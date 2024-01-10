@@ -8,7 +8,7 @@ export default function Header() {
     <header className="mb-14">
       <div className="relative">
         <div
-          className="px-4 pt-2 pb-20 clip text-white "
+          className="px-4 pt-5 pb-24 clip text-white "
           style={{
             backgroundImage: `linear-gradient(rgba(7, 130, 179, 0.8), rgba(7, 130, 179, 0.8)), url(${
               process.env.PUBLIC_URL + "/images/kids-learning.jpg"
