@@ -1,13 +1,14 @@
 import { FaFacebook, FaGoogle } from "react-icons/fa";
 import Input from "./Input";
 import AnimatePage from "../../components/AnimatePage";
-import { CloseForm } from ".";
+import { Link } from "react-router-dom";
+import { CustomNav } from "../../components/nabvar";
 
-export default function Login({ setShowForms }) {
+export default function Login() {
   return (
-    <AnimatePage cName="flex items-center h-full w-full relative">
-      <CloseForm />
-      <div className="w-full p-8">
+    <AnimatePage>
+      <CustomNav title="Login" cName="pb-24" />
+      <div className="-mt-3 bg-white rounded-2xl p-6">
         <h3 className="text-2xl text-center mb-7">Login</h3>
         <form>
           <Input name="email" placeholder="E-mail" type="email" />
@@ -27,12 +28,9 @@ export default function Login({ setShowForms }) {
             </button>
           </div>
         </div>
-        <div
-          className="text-center mt-4"
-          onClick={() => setShowForms("signup")}
-        >
+        <Link className="text-center mt-4" to="/signup">
           Don't have account <span className="text-blue-500">Register</span>
-        </div>
+        </Link>
       </div>
     </AnimatePage>
   );

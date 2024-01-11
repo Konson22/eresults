@@ -1,15 +1,14 @@
-import { CloseForm } from ".";
+import { Link } from "react-router-dom";
 import AnimatePage from "../../components/AnimatePage";
 import Input from "./Input";
+import { CustomNav } from "../../components/nabvar";
 
-export default function Register({ setShowForms }) {
+export default function Register() {
   return (
-    <AnimatePage cName="h-full w-full relative flex items-center px-8">
-      <CloseForm />
-      <div className="w-full">
-        <div className="text-center">
-          <h3 className="text-2xl text-center mb-6">Register</h3>
-        </div>
+    <AnimatePage>
+      <CustomNav title="Register" cName="pb-24" />
+      <div className="-mt-3 bg-white rounded-2xl p-6">
+        <h3 className="text-2xl text-center mb-6">Sign up</h3>
         <form>
           <Input name="email" placeholder="Name" type="email" />
           <Input name="email" placeholder="E-mail/Phone" type="text" />
@@ -27,9 +26,9 @@ export default function Register({ setShowForms }) {
             Register
           </button>
         </form>
-        <div className="text-center mt-4" onClick={() => setShowForms("login")}>
+        <Link className="text-center mt-4" to="/login">
           Already have account <span className="text-blue-500">Login</span>
-        </div>
+        </Link>
       </div>
     </AnimatePage>
   );

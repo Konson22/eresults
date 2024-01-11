@@ -57,21 +57,21 @@ export default function Header() {
 const data = [
   {
     title: "My Files",
-    path: "/my-files",
+    path: "/files",
     icon: <FaBriefcase />,
     bg: "bg-amber-100",
     text: "text-amber-500",
   },
   {
-    title: "Pass papers",
-    path: "/pass-papers",
+    title: "Books",
+    path: "/online-books",
     icon: <FiFileText />,
     bg: "bg-rose-100",
     text: "text-rose-500",
   },
   {
-    title: "Books",
-    path: "/books",
+    title: "Sylbus",
+    path: "/sylbus",
     icon: <FiBookOpen />,
     bg: "bg-green-100",
     text: "text-green-500",
