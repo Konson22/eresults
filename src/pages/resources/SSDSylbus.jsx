@@ -1,18 +1,31 @@
 import { useState } from "react";
 import { CustomNav } from "../../components/nabvar";
 import AnimatePage from "../../components/AnimatePage";
+import SearchBar from "../../components/SearchBar";
 
 export default function SSDSylbus() {
   const [currentCard, setCurrentCard] = useState("primary");
 
+  const handleSearch = (e) => {
+    console.log(e);
+  };
+
   return (
     <AnimatePage>
-      <CustomNav title="SSD Sylbus" />
-      <div className="-mt-3 bg-white rounded-2xl overflow-hidden">
+      <CustomNav
+        title="SSD Sylbus"
+        searchBar={
+          <SearchBar
+            handleSearch={handleSearch}
+            placeholder="Search for book"
+          />
+        }
+      />
+      <div className="bg-white">
         <div className="flex justify-between text-left">
           <span
             className={`${
-              currentCard === "primary" ? "border-b-green-400" : ""
+              currentCard === "primary" ? "border-b-green-400" : "text-gray-400"
             } border-b-2 flex-1 px-4 py-2`}
             onClick={() => setCurrentCard("primary")}
           >
@@ -20,7 +33,9 @@ export default function SSDSylbus() {
           </span>
           <span
             className={`${
-              currentCard === "secondary" ? "border-b-green-400" : ""
+              currentCard === "secondary"
+                ? "border-b-green-400"
+                : "text-gray-400"
             } border-b-2 flex-1 px-4 py-2`}
             onClick={() => setCurrentCard("secondary")}
           >
@@ -35,9 +50,22 @@ export default function SSDSylbus() {
 }
 
 function PrimaryBooks() {
+  const booksNames = [
+    "Primary one",
+    "Primary two",
+    "Primary three",
+    "Primary four",
+    "Primary five",
+    "Primary six",
+    "Primary seven",
+    "Primary eight",
+  ];
   return (
-    <div className="px-4 py-3">
-      <h2 className="text-xl">Primary Books</h2>
+    <AnimatePage cName="px-4 py-3">
+      <div className="flex items-center justify-between">
+        <h2 className="text-xl flex-1">Primary Books</h2>
+        <BooksDropDown names={booksNames} />
+      </div>
       <div className="grid grid-cols-2 gap-2 mt-4">
         {data.map((book) => (
           <div className="border">
@@ -49,14 +77,23 @@ function PrimaryBooks() {
           </div>
         ))}
       </div>
-    </div>
+    </AnimatePage>
   );
 }
 
 function SecondaryBooks() {
+  const booksNames = [
+    "Senior one",
+    "Senior two",
+    "Senior three",
+    "Senior four",
+  ];
   return (
-    <div className="">
-      <h2 className="text-xl">Secondary Books</h2>
+    <AnimatePage cName="p-4">
+      <div className="flex items-center justify-between">
+        <h2 className="text-xl flex-1">Secondary Books</h2>
+        <BooksDropDown names={booksNames} />
+      </div>
       <div className="grid grid-cols-2 gap-2 mt-4">
         {data.map((book) => (
           <div className="border">
@@ -68,7 +105,18 @@ function SecondaryBooks() {
           </div>
         ))}
       </div>
-    </div>
+    </AnimatePage>
+  );
+}
+
+function BooksDropDown({ names }) {
+  return (
+    <select className="x-3 py-1 rounded-md border">
+      <option value="All books">All books</option>
+      {names.map((grade) => (
+        <option value="All books">{grade}</option>
+      ))}
+    </select>
   );
 }
 

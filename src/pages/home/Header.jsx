@@ -2,8 +2,13 @@ import { FiBookOpen, FiFileText } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { FaBriefcase } from "react-icons/fa";
 import Navbar from "../../components/nabvar";
+import SearchBar from "../../components/SearchBar";
 
 export default function Header() {
+  const handleSearch = (e) => {
+    console.log(e);
+  };
+
   return (
     <header className="mb-14">
       <div className="relative">
@@ -23,16 +28,10 @@ export default function Header() {
           {/* <h1 className="text-2xl my-3">Learn anytime and anywhere</h1> */}
           {/* <h1 className="text-2xl my-3">Discover a new world of learning.</h1> */}
           {/* <h1 className="text-2xl my-3">Learn from anywhere, anytime.</h1> */}
-          <div className="h-[2.8rem] bg-white text-gray-700 flex rounded-md overflow-hidden p-1 mt-2">
-            <input
-              className="h-full w-full bg-transparent border-none focus:border-none focus:outline-none px-3"
-              type="search"
-              placeholder="Index No"
-            />
-            <button className="bg-green-600 text-white rounded-md px-3">
-              Check
-            </button>
-          </div>
+          <SearchBar
+            handleSearch={handleSearch}
+            placeholder="Search for book"
+          />
         </div>
         <div className="grid md:grid-cols-3 grid-cols-3 gap-2 px-3 absolute inset-0 top-[80%]">
           {data.map((item) => (

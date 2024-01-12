@@ -1,13 +1,24 @@
 import { Link } from "react-router-dom";
 import AnimatePage from "../../components/AnimatePage";
 import Input from "./Input";
-import { CustomNav } from "../../components/nabvar";
+import Navbar from "../../components/nabvar";
 
 export default function Register() {
   return (
-    <AnimatePage>
-      <CustomNav title="Register" cName="pb-24" />
-      <div className="-mt-3 bg-white rounded-2xl p-6">
+    <AnimatePage cName="h-screen flex flex-col pb-10 bg-white">
+      <div
+        className="flex-1 px-4 pt-2 text-white clip"
+        style={{
+          backgroundImage: `linear-gradient(rgba(7, 130, 179, 0.4), rgba(7, 130, 179, 0.4)), url(${
+            process.env.PUBLIC_URL + "/images/kids-learning2.jpg"
+          })`,
+          backgroundSize: "cover",
+          backgroundPosition: "right",
+        }}
+      >
+        <Navbar />
+      </div>
+      <div className="px-8">
         <h3 className="text-2xl text-center mb-6">Sign up</h3>
         <form>
           <Input name="email" placeholder="Name" type="email" />
@@ -26,7 +37,7 @@ export default function Register() {
             Register
           </button>
         </form>
-        <Link className="text-center mt-4" to="/login">
+        <Link className="text-center block mt-4" to="/login">
           Already have account <span className="text-blue-500">Login</span>
         </Link>
       </div>

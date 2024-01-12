@@ -78,6 +78,7 @@ export default function CotextProvider({ children }) {
     setShowForms,
     signOutUser,
     toggleMenu,
+    setProfile,
   };
   return <contextApi.Provider value={values}>{children}</contextApi.Provider>;
 }

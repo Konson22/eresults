@@ -11,7 +11,7 @@ const menuVars = {
   animate: {
     clipPath: "circle(140.5% at 99% 0)",
     transition: {
-      duration: 0.5,
+      duration: 0.3,
       ease: [0.12, 0, 0.39, 0],
     },
   },
@@ -19,7 +19,7 @@ const menuVars = {
     clipPath: "circle(0.4% at 0 0)",
     transition: {
       delay: 0.5,
-      duration: 0.5,
+      duration: 0.4,
       ease: [0.22, 1, 0.36, 1],
     },
   },

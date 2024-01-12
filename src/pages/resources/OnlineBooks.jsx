@@ -1,8 +1,8 @@
-import { FiSearch } from "react-icons/fi";
 import { CustomNav } from "../../components/nabvar";
 import AnimatePage from "../../components/AnimatePage";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import SearchBar from "../../components/SearchBar";
 
 export default function OnlineBooks() {
   const [isLoading, setIsLoading] = useState(false);
@@ -44,24 +44,17 @@ export default function OnlineBooks() {
   };
 
   return (
-    <AnimatePage>
+    <AnimatePage cName="bg-white">
       <CustomNav
         title="Online Books"
         searchBar={
-          <div className="h-[2.8rem] bg-white text-gray-700 flex items-center rounded-full overflow-hidden py-2 px-1 mt-10">
-            <input
-              className="h-full flex-1 bg-transparent border-none focus:border-none focus:outline-none px-3"
-              type="search"
-              placeholder="Search for book"
-              onChange={(e) => handleSearch(e.target.value)}
-            />
-            <button className="h-[2.5rem] w-[2.5rem] flex items-center justify-center rounded-full bg-green-600 text-white">
-              <FiSearch />
-            </button>
-          </div>
+          <SearchBar
+            handleSearch={handleSearch}
+            placeholder="Search for book"
+          />
         }
       />
-      <div className="-mt-3 rounded-2xl overflow-hidden bg-white p-4">
+      <div className="p-4">
         <span className="">Online Books</span>
         <div className="mt-4">
           {isLoading &&

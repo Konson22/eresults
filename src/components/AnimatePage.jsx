@@ -2,20 +2,23 @@ import { motion } from "framer-motion";
 
 const pageVariants = {
   initial: {
-    clipPath: "polygon(50% 0, 50% 0, 50% 100%, 50% 100%)",
+    x: "100%",
+    // clipPath: "polygon(50% 0, 50% 0, 50% 100%, 50% 100%)",
   },
   in: {
-    clipPath: "polygon(100% 0, 0 0, 0 100%, 100% 100%)",
+    x: 0,
+    // clipPath: "polygon(100% 0, 0 0, 0 100%, 100% 100%)",
     transition: {
       ease: "easeInOut",
-      duration: 0.2,
+      duration: 0.4,
     },
   },
   out: {
-    clipPath: "polygon(50% 0, 50% 0, 50% 100%, 50% 100%)",
+    x: "-100%",
+    // clipPath: "polygon(50% 0, 50% 0, 50% 100%, 50% 100%)",
     transition: {
       ease: "easeInOut",
-      duration: 0.1,
+      duration: 0.2,
     },
   },
 };

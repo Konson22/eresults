@@ -9,6 +9,7 @@ import OnlineBooks from "./pages/resources/OnlineBooks";
 import { AnimatePresence } from "framer-motion";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
+import ProfilePage from "./pages/ProfilePage";
 
 
 
@@ -20,11 +21,12 @@ function App() {
     <div className="text-slate-600 min-h-screen overflow-x-hidden">
       <MobileNavMenu openMenu={openMenu} toggleMenu={toggleMenu} />
       {showForms && <AuthForms showForms={showForms} setShowForms={setShowForms} />}
-      <AnimatePresence mode='wait' initial={true}>
+      <AnimatePresence mode='sync' initial={true}>
         <Routes location={location} key={location.pathname}>
           <Route path='/' element={<HomePage />} />
           <Route path='/sylbus' element={<SSDSylbus />} />
           <Route path='/login' element={<Login />} />
+          <Route path='/profile' element={<ProfilePage />} />
           <Route path='/signup' element={<Register />} />
           <Route path='/online-books' element={<OnlineBooks />} />
           <Route path='/files' element={<FilesPage />} />
