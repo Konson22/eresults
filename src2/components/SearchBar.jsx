@@ -1,13 +1,23 @@
-export default function SearchBar({ handleSearch }) {
+import { FiSearch } from "react-icons/fi";
+
+export default function SearchBar({
+  handleSearch,
+  cName = "",
+  placeholder = "Search...",
+}) {
   return (
-    <div className="h-[2.8rem] bg-gray-50 rounded border border-green-400 overflow-hidden flex items-center">
+    <div
+      className={`${cName} h-[3rem] bg-white text-gray-700 flex items-center rounded-full overflow-hidden mt-10`}
+    >
       <input
-        className="h-full w-full bg-transparent border-none focus:outline-none focus:border-none px-4"
+        className="h-full flex-1 bg-transparent border-none focus:border-none focus:outline-none pl-5"
         type="search"
-        placeholder="Enter your Index No"
+        placeholder={placeholder}
         onChange={(e) => handleSearch(e.target.value)}
       />
-      <button className="h-full bg-green-400 px-4">find</button>
+      <button className="h-[2.6rem] w-[2.6rem] mr-[.2rem] flex items-center justify-center rounded-full bg-green-600 text-white">
+        <FiSearch />
+      </button>
     </div>
   );
 }

@@ -1,10 +1,10 @@
 import { FiDownload, FiStar } from "react-icons/fi";
 
-export default function PaperCard({ files }) {
+export default function FileCard({ files }) {
   return (
-    <>
+    <div>
       {files.map((file) => (
-        <div className="flex items-center bg-white mb-3 rounded-md">
+        <div className="flex items-center mb-3 rounded-md px-2">
           <div className="h-8 w-8 flex items-center justify-center bg-green-300 rounded-full">
             {file.subject.split("")[0]}
           </div>
@@ -22,6 +22,6 @@ export default function PaperCard({ files }) {
           </div>
         </div>
       ))}
-    </>
+    </div>
   );
 }

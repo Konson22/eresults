@@ -1,11 +1,9 @@
 import { Link } from "react-router-dom";
-import AnimatePage from "../../components/AnimatePage";
 import Input from "./Input";
-import Navbar from "../../components/nabvar";
 
 export default function Register() {
   return (
-    <AnimatePage cName="h-screen flex flex-col pb-10 bg-white">
+    <div className="h-screen flex flex-col pb-10 bg-white">
       <div
         className="flex-1 px-4 pt-2 text-white clip"
         style={{
@@ -15,9 +13,7 @@ export default function Register() {
           backgroundSize: "cover",
           backgroundPosition: "right",
         }}
-      >
-        <Navbar />
-      </div>
+      ></div>
       <div className="px-8">
         <h3 className="text-2xl text-center mb-6">Sign up</h3>
         <form>
@@ -41,6 +37,6 @@ export default function Register() {
           Already have account <span className="text-blue-500">Login</span>
         </Link>
       </div>
-    </AnimatePage>
+    </div>
   );
 }

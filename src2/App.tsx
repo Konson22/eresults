@@ -1,32 +1,37 @@
 import { Route, Routes, useLocation } from "react-router-dom";
-import Navbar from "./components/navbar";
 import HomePage from "./pages/home";
-import ResultsPage from "./pages/ResultsPage";
-import LearningMaterialPage from "./pages/learningMaterial";
-import PasspapersPage from "./pages/PasspapersPage";
-import FriendsPage from "./pages/FriendsPage";
-import AuthForms from "./pages/auth";
 import { useContextApi } from "./manager/ContextProvider";
+import MobileNavMenu from "./components/nabvar/MobileNavMenu";
+import AuthForms from "./pages/auth";
+import FilesPage from "./pages/FilesPage";
+import SSDSylbus from "./pages/resources/SSDSylbus";
+import OnlineBooks from "./pages/resources/OnlineBooks";
 import { AnimatePresence } from "framer-motion";
-import Books from "./pages/learningMaterial/Books";
+import Login from "./pages/auth/Login";
+import Register from "./pages/auth/Register";
+import ProfilePage from "./pages/ProfilePage";
+import ResultPage from "./pages/ResultPage";
+
 
 
 function App() {
-  const { showForms, setShowForms } = useContextApi();
+  const { openMenu, showForms, toggleMenu, setShowForms } = useContextApi();
   const location = useLocation()
+
   return (
-    <div className="text-slate-600 min-h-screen pb-[4rem] overflow-x-hidden">
-      <Navbar />
+    <div className="text-gray-500 min-h-screen overflow-x-hidden">
+      <MobileNavMenu openMenu={openMenu} toggleMenu={toggleMenu} />
       {showForms && <AuthForms showForms={showForms} setShowForms={setShowForms} />}
-      <AnimatePresence mode='wait' initial={true}>
+      <AnimatePresence mode='sync' initial={true}>
         <Routes location={location} key={location.pathname}>
-          <Route path='/' element={<LearningMaterialPage />} />
-          <Route path='/home' element={<HomePage />} />
-          <Route path='/results' element={<ResultsPage />} />
-          <Route path='/friends' element={<FriendsPage />} />
-          <Route path='/pass-papers' element={<PasspapersPage />} />
-          <Route path='/learning-materials' element={<LearningMaterialPage />} />
-          <Route path='/books' element={<Books />} />
+          <Route path='/' element={<HomePage />} />
+          <Route path='/sylbus' element={<SSDSylbus />} />
+          <Route path='/results' element={<ResultPage />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/profile' element={<ProfilePage />} />
+          <Route path='/signup' element={<Register />} />
+          <Route path='/online-books' element={<OnlineBooks />} />
+          <Route path='/files' element={<FilesPage />} />
         </Routes>
       </AnimatePresence>
     </div>

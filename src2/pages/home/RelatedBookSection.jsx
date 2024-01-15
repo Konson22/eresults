@@ -1,64 +1,112 @@
+import { useEffect, useRef, useState } from "react";
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import Carousel from "react-elastic-carousel";
+import axios from "axios";
+
+const breakPoints = [
+  { width: 0, itemsToShow: 2, itemPadding: [0, 4] },
+  {
+    width: 550,
+    itemsToShow: 1,
+    itemsToScroll: 1,
+    itemPadding: [5, 5],
+    pagination: false,
+  },
+  {
+    width: 850,
+    itemsToShow: 2,
+    itemPadding: [10, 10],
+  },
+  { width: 1150, itemsToShow: 4, itemsToScroll: 2 },
+];
+
 export default function RelatedBookSection() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [message, setMessage] = useState("");
+  const [books, setBooks] = useState([]);
+
+  const URL = "https://www.googleapis.com/books/v1/volumes?q=";
+  useEffect(() => {
+    const controller = new AbortController();
+    let isMuted = true;
+    async function fetchBooks() {
+      setIsLoading(true);
+      try {
+        const results = await axios(`${URL}education`).then((res) => res);
+        if (isMuted) {
+          setBooks(
+            results.data.items.filter((item) => item.accessInfo.pdf.isAvailable)
+          );
+        }
+      } catch (error) {
+        setMessage("Error Occures!");
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    fetchBooks();
+
+    return () => {
+      controller.abort();
+      isMuted = false;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  const carouselRef = useRef();
+
   return (
-    <div className="md:px-[10%] px-4 my-8">
-      <div className="grid md:grid-cols-3 grid-cols-2 md:gap-4 gap-2 flex-1">
-        {materials.map((book) => (
-          <div className="border border-primary mb-3 bg-white">
-            <div className="md:h-[200px] h-[140px] bg-gray-100">
-              <img src={book.image} alt="" />
+    <div className="mb-6 bg-gray-100 mx-3 py-4 rounded-md shadow-sm">
+      <div className="flex items-center justify-between px-4 mb-5">
+        <h2 className="text-xl">Related Books</h2>
+        <div className="flex items-center">
+          <button
+            className="bg-white rounded-full text-xl p-1 mr-3"
+            onClick={() => carouselRef.current.slidePrev()}
+          >
+            <FiChevronLeft />
+          </button>
+          <button
+            className="bg-white rounded-full text-xl p-1"
+            onClick={() => carouselRef.current.slideNext()}
+          >
+            <FiChevronRight />
+          </button>
+        </div>
+      </div>
+      <Carousel
+        className="overflow-hidde flex-1 z-20"
+        breakPoints={breakPoints}
+        ref={carouselRef}
+        showArrows={false}
+        outerSpacing={0}
+        pagination={false}
+      >
+        {isLoading &&
+          [...new Array(5)].map(() => (
+            <div className="w-full">
+              <div className="h-[120px] bg-white"></div>
             </div>
-            <div className="md:p-3 p-2">
-              <p className="md:font-base font- line-clamp-2">
-                {book.description}
-              </p>
-              <div className="flex mt-3">
-                <button className="bg-rose-600 text-white px-4 py-1">
-                  download
-                </button>
+          ))}
+        {!isLoading &&
+          books.length > 0 &&
+          books.map((book) => (
+            <div className="w-full bg-white shadow-md rounded overflow-hidden">
+              {book.volumeInfo.imageLinks && (
+                <img
+                  className="h-[120px]"
+                  src={book.volumeInfo.imageLinks.thumbnail}
+                  alt=""
+                />
+              )}
+              <div className="p-3">
+                <h3 className="text-sm line-clamp-2">
+                  {book.volumeInfo.title}
+                </h3>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+      </Carousel>
     </div>
   );
 }
-
-const materials = [
-  {
-    title: "Advace JavaScript",
-    image: process.env.PUBLIC_URL + "/images/js.jpeg",
-    description: `It is an unofficial and free JavaScript ebook created for educational purposes. All the content is
-      extracted from Stack Overflow Documentation`,
-  },
-  {
-    title: "Basic JavaScript",
-    image: process.env.PUBLIC_URL + "/images/js2.jpeg",
-    description: `JavaScript is a case-sensitive language. This means the language considers capital letters to be
-      different from their lowercase counterparts`,
-  },
-  {
-    title: "Advace JavaScript",
-    image: process.env.PUBLIC_URL + "/images/js.jpeg",
-    description: `It is an unofficial and free JavaScript ebook created for educational purposes. All the content is
-      extracted from Stack Overflow Documentation`,
-  },
-  //   {
-  //     title: "Basic JavaScript",
-  //     image: process.env.PUBLIC_URL + "/images/js2.jpeg",
-  //     description: `JavaScript is a case-sensitive language. This means the language considers capital letters to be
-  //       different from their lowercase counterparts`,
-  //   },
-  //   {
-  //     title: "Advace JavaScript",
-  //     image: process.env.PUBLIC_URL + "/images/js.jpeg",
-  //     description: `It is an unofficial and free JavaScript ebook created for educational purposes. All the content is
-  //       extracted from Stack Overflow Documentation`,
-  //   },
-  //   {
-  //     title: "Basic JavaScript",
-  //     image: process.env.PUBLIC_URL + "/images/js2.jpeg",
-  //     description: `JavaScript is a case-sensitive language. This means the language considers capital letters to be
-  //       different from their lowercase counterparts`,
-  //   },
-];

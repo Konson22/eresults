@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function BackBtn() {
   return (
-    <Link className="mr-4 text-xl" to={-1}>
-      {/* <FaArrowLeft /> */}
+    <Link className="mt-2 text-xl mr-4" to={-1}>
       <FiArrowLeft />
     </Link>
   );

@@ -14,6 +14,10 @@ img {
     background-size: cover;
 }
 
-.clip {
-    clip-path: ellipse(140% 95% at 50% 0%);
+
+@media screen and (max-width:750px) {
+
+    .clip {
+        clip-path: ellipse(140% 95% at 50% 0%);
+    }
 }

@@ -1,8 +1,6 @@
 import { FaFacebook, FaGoogle } from "react-icons/fa";
 import Input from "./Input";
-import AnimatePage from "../../components/AnimatePage";
 import { Link } from "react-router-dom";
-import Navbar from "../../components/nabvar";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../../config";
 import { useState } from "react";
@@ -30,7 +28,7 @@ export default function Login() {
     );
   };
   return (
-    <AnimatePage cName="h-screen flex flex-col pb-10 bg-white">
+    <div className="h-screen flex flex-col pb-10 bg-white">
       <div
         className="flex-1 px-4 pt-2 text-white clip"
         style={{
@@ -40,9 +38,7 @@ export default function Login() {
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
-      >
-        <Navbar />
-      </div>
+      ></div>
       <div className="px-8">
         <h3 className="text-2xl text-center mb-7">Login</h3>
         {message && <span className="text-red-500">{message}</span>}
@@ -70,10 +66,10 @@ export default function Login() {
             </button>
           </div>
         </div>
-        <Link className="text-center block mt-4" to="/signup">
+        <Link className="text-center block mt-4" to="/register">
           Don't have account <span className="text-blue-500">Register</span>
         </Link>
       </div>
-    </AnimatePage>
+    </div>
   );
 }
