@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 export default function Header() {
   return (
-    <div className="relative md:mb-0 pb-16">
+    <div className="relative">
       <header
         className="md:h-[80vh] flex items-center md:px-[10%] px-4 md:pt-0 pt-16 md:pb-0 pb-24 clip"
         style={{
@@ -22,7 +22,7 @@ export default function Header() {
           <ResultCheck cName="md:hidden flex" />
         </div>
       </header>
-      <div className="md:hidden grid md:grid-cols-3 grid-cols-3 gap-2 px-3 absolute inset-0 top-[80%]">
+      <div className="md:hidden grid md:grid-cols-3 grid-cols-3 gap-2 px-3 absolute inset-0 top-[80%] md:mb-0 mb-16">
         {data.map((item) => (
           <Link
             to={item.path}
