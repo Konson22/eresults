@@ -2,6 +2,7 @@ import axios from "axios";
 import BookCard from "../components/BookCard";
 import SearchBar from "../components/SearchBar";
 import { useEffect, useState } from "react";
+import BackBtn from "../utils/BackBtn";
 
 export default function BooksPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -44,8 +45,11 @@ export default function BooksPage() {
 
   return (
     <div className="md:px-[8%] px-4 py-4">
-      <div className="flex items-center justify-between">
-        <div className="">Books</div>
+      <div className="md:flex items-center justify-between">
+        <div className="flex">
+          <BackBtn />
+          Books
+        </div>
         <SearchBar handleSearch={handleSearch} />
       </div>
       <div className="grid md:grid-cols-4 grid-cols-2 gap-4 mt-4">

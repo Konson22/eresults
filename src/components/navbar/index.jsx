@@ -14,7 +14,7 @@ export default function Navbar() {
   const { profile } = useContextApi();
 
   return (
-    <nav className="bg-gray-50 flex items-center justify-between md:px-[5%] px-4 py-3">
+    <nav className="bg-white flex items-center justify-between md:px-[5%] px-4 py-3">
       <Logo />
       <NavigationLink />
       <MobileNavMenu openMenu={openMenu} toggleMenu={toggleMenu} />

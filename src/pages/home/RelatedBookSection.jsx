@@ -57,7 +57,7 @@ export default function RelatedBookSection() {
   const carouselRef = useRef();
 
   return (
-    <div className="mb-6 bg-gray-100 mx-3 py-4 rounded-md shadow-sm">
+    <div className="mb-6 bg-white mx-3 py-4 rounded-md shadow-sm">
       <div className="flex items-center justify-between px-4 mb-5">
         <h2 className="text-xl">Related Books</h2>
         <div className="flex items-center">
