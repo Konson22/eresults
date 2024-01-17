@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import Carousel from "react-elastic-carousel";
 import axios from "axios";
+import BookCard from "../../components/BookCard";
 
 const breakPoints = [
   { width: 0, itemsToShow: 2, itemPadding: [0, 4] },
@@ -56,7 +57,7 @@ export default function RelatedBookSection() {
   const carouselRef = useRef();
 
   return (
-    <div className="mb-6 bg-gray-100 mx-3 py-4 rounded-md shadow-sm">
+    <div className="mb-6 bg-white mx-3 py-4 rounded-md shadow-sm">
       <div className="flex items-center justify-between px-4 mb-5">
         <h2 className="text-xl">Related Books</h2>
         <div className="flex items-center">
@@ -85,27 +86,20 @@ export default function RelatedBookSection() {
         {isLoading &&
           [...new Array(5)].map(() => (
             <div className="w-full">
-              <div className="h-[120px] bg-white"></div>
+              <div className="md:h-[160px] h-[140px] bg-white"></div>
             </div>
           ))}
         {!isLoading &&
           books.length > 0 &&
-          books.map((book) => (
-            <div className="w-full bg-white shadow-md rounded overflow-hidden">
-              {book.volumeInfo.imageLinks && (
-                <img
-                  className="h-[120px]"
-                  src={book.volumeInfo.imageLinks.thumbnail}
-                  alt=""
+          books.map(
+            (book) =>
+              book.volumeInfo.imageLinks && (
+                <BookCard
+                  image={book.volumeInfo.imageLinks.thumbnail}
+                  title={book.volumeInfo.title}
                 />
-              )}
-              <div className="p-3">
-                <h3 className="text-sm line-clamp-2">
-                  {book.volumeInfo.title}
-                </h3>
-              </div>
-            </div>
-          ))}
+              )
+          )}
       </Carousel>
     </div>
   );

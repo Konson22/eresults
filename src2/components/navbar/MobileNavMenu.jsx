@@ -4,43 +4,6 @@ import { FiChevronDown, FiX } from "react-icons/fi";
 import { navigationLinksData } from "../../assets/data";
 import { useState } from "react";
 
-const menuVars = {
-  initial: {
-    clipPath: "circle(0.4% at 0 0)",
-  },
-  animate: {
-    clipPath: "circle(140.5% at 99% 0)",
-    transition: {
-      duration: 0.3,
-      ease: [0.12, 0, 0.39, 0],
-    },
-  },
-  exit: {
-    clipPath: "circle(0.4% at 0 0)",
-    transition: {
-      delay: 0.5,
-      duration: 0.4,
-      ease: [0.22, 1, 0.36, 1],
-    },
-  },
-};
-
-const containerVars = {
-  initial: {
-    transition: {
-      staggerChildren: 0.3,
-      staggerDirection: -1,
-    },
-  },
-  open: {
-    transition: {
-      delayChildren: 0.2,
-      staggerChildren: 0.2,
-      staggerDirection: 1,
-    },
-  },
-};
-
 export default function MobileNavMenu({ openMenu, toggleMenu }) {
   return (
     <AnimatePresence>
@@ -120,6 +83,7 @@ const MobileNavLink = ({ link, toggleMenu }) => {
                 <Link
                   className="block px-3 py-3"
                   to={subl.path}
+                  key={subl.path}
                   onClick={toggleMenu}
                 >
                   {subl.title}
@@ -135,4 +99,41 @@ const MobileNavLink = ({ link, toggleMenu }) => {
       )}
     </motion.div>
   );
+};
+
+const menuVars = {
+  initial: {
+    clipPath: "circle(0.4% at 0 0)",
+  },
+  animate: {
+    clipPath: "circle(140.5% at 99% 0)",
+    transition: {
+      duration: 0.3,
+      ease: [0.12, 0, 0.39, 0],
+    },
+  },
+  exit: {
+    clipPath: "circle(0.4% at 0 0)",
+    transition: {
+      delay: 0.5,
+      duration: 0.4,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
+const containerVars = {
+  initial: {
+    transition: {
+      staggerChildren: 0.3,
+      staggerDirection: -1,
+    },
+  },
+  open: {
+    transition: {
+      delayChildren: 0.2,
+      staggerChildren: 0.2,
+      staggerDirection: 1,
+    },
+  },
 };

@@ -2,10 +2,10 @@ import { useState } from "react";
 import { FiSearch } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 
-export default function SearchBar({ handleSearch }) {
+export default function SearchBar({ handleSearch, cName = "flex" }) {
   return (
     <div
-      className={`md:w-[30%] flex bg-gray-50 md:h-[3.4rem] h-[2.8rem] rounded-md overflow-hidden`}
+      className={`${cName} md:w-[40%] w-full bg-white sshadow-md md:h-[3.1rem] h-[2.8rem] rounded-md overflow-hidden`}
     >
       <input
         className="h-full md:flex-1 w-full bg-transparent border-none focus:border-none focus:outline-none pl-5"
@@ -13,7 +13,7 @@ export default function SearchBar({ handleSearch }) {
         placeholder="Subject/name"
         onChange={(e) => handleSearch(e.target.value)}
       />
-      <button className="h-full md:bg-green-600 md:text-white md:px-4 px-2">
+      <button className="h-full md:bg-green-600 md:text-white md:px-4 px-3">
         <span className="md:hidden block">
           <FiSearch />
         </span>
@@ -32,15 +32,6 @@ export function ResultCheck({ cName = "md:flex hidden" }) {
   };
   return (
     <div className={`${cName} md:h-[2.7rem] h-[2.8rem]`}>
-      <select
-        className="h-full bg-white border-gray-200 focus:border-none rounded-l-md focus:outline-none bg-transparent text-gray-600 flex items-center"
-        onChange={(e) => setGrade(e.target.value)}
-      >
-        <option value="">Grade</option>
-        <option value="Senior four">UoJ</option>
-        <option value="S4">S4</option>
-        <option value="P8">P8</option>
-      </select>
       <input
         className="h-full md:flex-1 w-full bg-transparent bg-white border-gray-200 focus:border-none focus:outline-none px-3"
         type="search"

@@ -11,9 +11,6 @@ export default function CotextProvider({ children }) {
   const [showForms, setShowForms] = useState(null);
   const [message, setMessage] = useState("");
   const [books, setBooks] = useState([]);
-  const [openMenu, setOpenMenu] = useState(false);
-
-  const toggleMenu = () => setOpenMenu(!openMenu);
 
   const signOutUser = () => {
     signOut(auth)
@@ -74,10 +71,8 @@ export default function CotextProvider({ children }) {
     showForms,
     profile,
     books,
-    openMenu,
     setShowForms,
     signOutUser,
-    toggleMenu,
     setProfile,
   };
   return <contextApi.Provider value={values}>{children}</contextApi.Provider>;

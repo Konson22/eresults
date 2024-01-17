@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import HomePage from "./pages/home";
-import Navbar from "./components/navbar";
+import Navbar from "./components/appbar";
 import BooksPage from "./pages/BooksPage";
 import Sylbus from "./pages/sylbus";
 import ProfilePage from "./pages/ProfilePage";
@@ -12,13 +12,14 @@ import TermsAndCondition from "./pages/TermsAndCondition";
 import Privacy from "./pages/Privacy";
 import Policy from "./pages/Policy";
 import PassPapers from "./pages/PassPapers";
+import SylbusPage from "./pages/SylbusPage";
 
 
 
 function App() {
 
   return (
-    <div className="text-gray-500 bg-gray-50 min-h-screen overflow-x-hidden">
+    <div className="text-gray-500 min-h-screen overflow-x-hidden">
       <Navbar />
       <Routes>
         <Route path='/' element={<HomePage />} />
@@ -27,7 +28,7 @@ function App() {
         <Route path='/results' element={<ResultsPage />} />
         <Route path='/files' element={<PassPapers />} />
         <Route path='/register' element={<Register />} />
-        <Route path='/ssd-sylbus' element={<Sylbus />} />
+        <Route path='/ssd-sylbus' element={<SylbusPage />} />
         <Route path='/profile' element={<ProfilePage />} />
         <Route path='/terms-and-ondition' element={<TermsAndCondition />} />
         <Route path='/privacy' element={<Privacy />} />

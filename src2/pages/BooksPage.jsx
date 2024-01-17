@@ -1,10 +1,10 @@
-import { CustomNav } from "../../components/nabvar";
-import AnimatePage from "../../components/AnimatePage";
-import { useEffect, useState } from "react";
 import axios from "axios";
-import SearchBar from "../../components/SearchBar";
+import BookCard from "../components/BookCard";
+import SearchBar from "../components/SearchBar";
+import { useEffect, useState } from "react";
+import BackBtn from "../utils/BackBtn";
 
-export default function OnlineBooks() {
+export default function BooksPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [books, setBooks] = useState([]);
@@ -44,43 +44,48 @@ export default function OnlineBooks() {
   };
 
   return (
-    <AnimatePage cName="bg-white">
-      <CustomNav
-        title="Online Books"
-        searchBar={
-          <SearchBar
-            handleSearch={handleSearch}
-            placeholder="Search for book"
-          />
-        }
-      />
-      <div className="p-4">
-        <span className="">Online Books</span>
-        <div className="mt-4">
-          {isLoading &&
-            [...new Array(5)].map(() => (
-              <div className="w-full">
-                <div className="h-[120px] bg-gray-100"></div>
-              </div>
-            ))}
-          {!isLoading &&
-            books.length > 0 &&
-            books.map((book) => (
-              <div className="w-full bg-white shadow-md rounded overflow-hidden">
+    <div className="md:px-[8%] px-4 py-4">
+      <div className="md:flex items-center justify-between">
+        <div className="flex">
+          <BackBtn />
+          Books
+        </div>
+        <SearchBar handleSearch={handleSearch} />
+      </div>
+      <div className="grid md:grid-cols-4 grid-cols-2 gap-4 mt-4">
+        {isLoading &&
+          [...new Array(5)].map(() => (
+            <div className="w-full">
+              <div className="md:h-[160px] h-[150px] bg-gray-100"></div>
+            </div>
+          ))}
+        {!isLoading &&
+          books.length > 0 &&
+          books.map(
+            (book) =>
+              book.volumeInfo.imageLinks && (
+                <BookCard
+                  image={book.volumeInfo.imageLinks.thumbnail}
+                  title={book.volumeInfo.title}
+                />
+              )
+          )}
+      </div>
+    </div>
+  );
+}
+
+/*
+<div className="w-full bg-white shadow-md rounded overflow-hidden">
                 {book.volumeInfo.imageLinks && (
                   <img
-                    className="md:h-[120px]"
+                    className="md:h-[120px] h-[140px]"
                     src={book.volumeInfo.imageLinks.thumbnail}
                     alt=""
                   />
                 )}
                 <div className="p-3">
+                  {console.log(book.volumeInfo)}
                   <h3 className="md:line-clamp-2">{book.volumeInfo.title}</h3>
                 </div>
-              </div>
-            ))}
-        </div>
-      </div>
-    </AnimatePage>
-  );
-}
+              </div>*/
