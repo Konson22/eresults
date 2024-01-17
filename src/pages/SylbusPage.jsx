@@ -70,7 +70,7 @@ export default function SylbusPage() {
             books.length > 0 &&
             books.map((book) => (
               <BookCard
-                image={process.env.REACT_APP_API + book.coverImage}
+                image={process.env.REACT_APP_API + `/${book.coverImage}`}
                 subject={book.grade}
                 title={book.subject}
               />
