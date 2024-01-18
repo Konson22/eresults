@@ -7,7 +7,7 @@ export default function BooksPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [books, setBooks] = useState([]);
-  const [query, setQuery] = useState("education");
+  const [query, setQuery] = useState("math");
 
   const URL = "https://www.googleapis.com/books/v1/volumes?q=";
   useEffect(() => {
