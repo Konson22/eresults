@@ -13,12 +13,9 @@ export default function Appbar() {
   const { profile } = useContextApi();
 
   return (
-    <div className="bg-white shadow flex items-center justify-between md:px-[10%] px-4 py-2">
-      <div className="md:h-[3rem] h-8 w-max">
-        <img
-          src={process.env.PUBLIC_URL + "/images/eresults-logo3.png"}
-          alt=""
-        />
+    <div className="bg-white shadow flex items-center justify-between md:px-[10%] px-4 ">
+      <div className="md:h-[4.5rem] h-[3rem] w-max">
+        <img src={process.env.PUBLIC_URL + "/images/logo-image.jpeg"} alt="" />
       </div>
       <MobileNavMenu openMenu={openMenu} toggleMenu={toggleMenu} />
       <div className="md:block hidden">
