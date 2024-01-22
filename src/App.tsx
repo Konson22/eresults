@@ -1,8 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import HomePage from "./pages/home";
-import Navbar from "./components/appbar";
+import Appbar from "./components/appbar";
 import BooksPage from "./pages/BooksPage";
-import Sylbus from "./pages/sylbus";
 import ProfilePage from "./pages/ProfilePage";
 import Login from "./pages/forms/Login";
 import Register from "./pages/forms/Register";
@@ -20,7 +19,7 @@ function App() {
 
   return (
     <div className="text-gray-500 min-h-screen overflow-x-hidden">
-      <Navbar />
+      <Appbar />
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='/online-books' element={<BooksPage />} />

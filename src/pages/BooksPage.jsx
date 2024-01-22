@@ -5,9 +5,8 @@ import { useEffect, useState } from "react";
 
 export default function BooksPage() {
   const [isLoading, setIsLoading] = useState(false);
-  const [message, setMessage] = useState("");
   const [books, setBooks] = useState([]);
-  const [query, setQuery] = useState("math");
+  const [query, setQuery] = useState("physics");
 
   const URL = "https://www.googleapis.com/books/v1/volumes?q=";
   useEffect(() => {
@@ -23,7 +22,6 @@ export default function BooksPage() {
           );
         }
       } catch (error) {
-        setMessage("Error Occures!");
       } finally {
         setIsLoading(false);
       }
@@ -54,7 +52,7 @@ export default function BooksPage() {
         </ul>
         <SearchBar handleSearch={handleSearch} />
       </div>
-      <div className="grid md:grid-cols-4 grid-cols-2 gap-4 mt-4">
+      <div className="grid md:grid-cols-4 grid-cols-2 md:gap-4 gap-2 mt-4">
         {isLoading &&
           [...new Array(5)].map(() => (
             <div className="w-full">
@@ -67,6 +65,7 @@ export default function BooksPage() {
             (book) =>
               book.volumeInfo.imageLinks && (
                 <BookCard
+                  pageCount={book.volumeInfo.pageCount}
                   image={book.volumeInfo.imageLinks.thumbnail}
                   title={book.volumeInfo.title}
                 />
