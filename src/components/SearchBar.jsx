@@ -31,18 +31,20 @@ export function ResultCheck({ cName = "md:flex hidden" }) {
     return navigate(`/results?grade=${grade}&index=${indexNumber}`);
   };
   return (
-    <div className={`${cName} md:h-[2.7rem] h-[2.8rem]`}>
+    <div
+      className={`${cName} items-center md:h-[2.7rem] h-[2.8rem] rounded-full overflow-hidden bg-white`}
+    >
       <input
-        className="h-full md:flex-1 w-full bg-transparent bg-white border-gray-200 focus:border-none focus:outline-none px-3"
+        className="h-full flex-1 bg-transparent bg-white border-gray-200 focus:border-none border-none focus:outline-none px-3"
         type="search"
         placeholder="Index No"
         onChange={(e) => setIndexNumber(e.target.value)}
       />
       <button
-        className="h-full rounded-r-md bg-green-500 text-white px-4"
+        className="h-[2.3rem] w-[2.3rem] flex items-center justify-center rounded-full bg-green-600 text-white mr-[0.2rem]"
         onClick={handleSearch}
       >
-        Check
+        <FiSearch />
       </button>
     </div>
   );

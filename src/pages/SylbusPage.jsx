@@ -7,6 +7,7 @@ export default function SylbusPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [books, setBooks] = useState([]);
+  const [currentbooks, setCurrentBooks] = useState(null);
   const [currentCategory, setCurrentCategory] = useState("All Books");
 
   useEffect(() => {
@@ -35,6 +36,23 @@ export default function SylbusPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    if (currentCategory === "All Books") {
+      setCurrentBooks(books);
+    } else {
+      const result = books.filter(
+        (book) => book.section === currentCategory.split(" ")[0]
+      );
+      if (result.length > 0) {
+        setMessage("");
+        setCurrentBooks(result);
+      } else {
+        setMessage(`No ${currentCategory} available currently!`);
+        setCurrentBooks(null);
+      }
+    }
+  }, [currentCategory, books]);
+
   return (
     <div className="md:px-[8%] px-3 py-4">
       <div className="md:flex items-center justify-between">
@@ -57,26 +75,35 @@ export default function SylbusPage() {
         <SearchBar cName="md:flex hidden" />
       </div>
       <div className="md:mt-10 mt-4">
-        <h3 className="text-xl">{currentCategory}</h3>
         {message && <h3 className="text-red-500">{message}</h3>}
-        <div className="grid md:grid-cols-4 grid-cols-2 gap-4 md:mt-10 mt-4">
-          {isLoading &&
-            [...new Array(5)].map(() => (
-              <div className="w-full">
-                <div className="md:h-[160px] h-[150px] bg-gray-100"></div>
-              </div>
-            ))}
-          {!isLoading &&
-            books.length > 0 &&
-            books.map((book) => (
-              <BookCard
-                image={process.env.REACT_APP_API + book.coverImage}
-                subject={book.grade}
-                title={book.subject}
-              />
-            ))}
-        </div>
+        {isLoading && <Loader />}
+        {!isLoading && currentbooks && (
+          <div className="">
+            <h3 className="text-xl">{currentCategory}</h3>
+            <div className="grid md:grid-cols-4 grid-cols-2 gap-4 md:mt-10 mt-4">
+              {currentbooks.map((book) => (
+                <BookCard
+                  image={process.env.REACT_APP_API + book.coverImage}
+                  subject={book.grade}
+                  title={book.subject}
+                />
+              ))}
+            </div>
+          </div>
+        )}
       </div>
+    </div>
+  );
+}
+
+function Loader() {
+  return (
+    <div className="grid md:grid-cols-4 grid-cols-2 gap-4 md:mt-10 mt-4">
+      {[...new Array(5)].map(() => (
+        <div className="w-full">
+          <div className="md:h-[160px] h-[150px] bg-gray-100"></div>
+        </div>
+      ))}
     </div>
   );
 }
