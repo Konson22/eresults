@@ -110,7 +110,7 @@ export default function BooksPage() {
   );
 }
 
-function Loader() {
+export function Loader() {
   return (
     <>
       {[...new Array(8)].map(() => (

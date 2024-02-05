@@ -40,7 +40,7 @@ export default function Navbar() {
 }
 
 function ProfileIcon({ profile, setShowForms }) {
-  return !profile ? (
+  return profile ? (
     <div className="flex items-center">
       <span className="text-2xl">
         <FiMail />
@@ -51,7 +51,7 @@ function ProfileIcon({ profile, setShowForms }) {
       <Link className="flex items-center" to="/profile">
         <img
           className="md:h-10 md:w-10 h-8 w-8 rounded-full md:mr-2"
-          src="./avatars/image-2.png"
+          src={profile.avatar}
           alt=""
         />
         <span className="md:block hidden">Konson</span>
