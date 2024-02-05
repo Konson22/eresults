@@ -1,15 +1,16 @@
 import { useState, useContext, createContext, useEffect } from "react";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../config";
-import axios from "axios";
+import booksJson from "../assets/bookJson.json";
+// import axiosInstance from "../hooks/useAxios";
 
 const contextApi = createContext();
 
 export default function CotextProvider({ children }) {
   const [isLoading, setIsLoading] = useState(false);
+  const [message, setMessage] = useState("");
   const [profile, setProfile] = useState(null);
   const [showForms, setShowForms] = useState(null);
-  const [message, setMessage] = useState("");
   const [books, setBooks] = useState([]);
 
   const signOutUser = () => {
@@ -21,32 +22,35 @@ export default function CotextProvider({ children }) {
   };
 
   useEffect(() => {
+    setIsLoading(false);
+    setMessage("");
+    setBooks(booksJson);
     const controller = new AbortController();
-    let isMuted = true;
-    async function fetchBooks() {
-      setIsLoading(true);
-      try {
-        const results = await axios(
-          "https://www.googleapis.com/books/v1/volumes?q=math"
-        ).then((res) => res);
-        if (isMuted) {
-          setBooks(results.data.items);
-        }
-      } catch (error) {
-        if (
-          error.status === 404 ||
-          error.status === 403 ||
-          error.status === 500
-        ) {
-          return setMessage(error?.response?.data);
-        }
-        setMessage("Error Occures!");
-      } finally {
-        setIsLoading(false);
-      }
-    }
+    // let isMuted = true;
+    // async function fetchBooks() {
+    //   setIsLoading(true);
+    //   try {
+    //     const results = await axiosInstance("/books").then((res) => res);
+    //     if (isMuted) {
+    //       setBooks(results.data);
+    //       setBooks(booksJson);
+    //     }
+    //   } catch (error) {
+    //     setBooks(booksJson);
+    //     if (
+    //       error.status === 404 ||
+    //       error.status === 403 ||
+    //       error.status === 500
+    //     ) {
+    //       return setMessage(error?.response?.data);
+    //     }
+    //     setMessage("Error Occures!");
+    //   } finally {
+    //     setIsLoading(false);
+    //   }
+    // }
 
-    fetchBooks();
+    // fetchBooks();
     const listen = onAuthStateChanged(auth, (user) => {
       if (user) {
         setProfile({
@@ -60,7 +64,7 @@ export default function CotextProvider({ children }) {
     return () => {
       listen();
       controller.abort();
-      isMuted = false;
+      // isMuted = false;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

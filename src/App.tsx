@@ -1,39 +1,33 @@
 import { Route, Routes } from "react-router-dom";
 import HomePage from "./pages/home";
-import Appbar from "./components/appbar";
+import Navbar from "./components/navbar";
+import Forms from "./pages/forms";
+import { useContextApi } from "./manager/ContextProvider";
+import NotesPage from "./pages/NotesPage";
 import BooksPage from "./pages/BooksPage";
-import ProfilePage from "./pages/ProfilePage";
-import Login from "./pages/forms/Login";
-import Register from "./pages/forms/Register";
-import ResultsPage from "./pages/ResultsPage";
-import Footer from "./components/Footer";
-import TermsAndCondition from "./pages/TermsAndCondition";
-import Privacy from "./pages/Privacy";
-import Policy from "./pages/Policy";
-import PassPapers from "./pages/PassPapers";
-import SylbusPage from "./pages/SylbusPage";
-
+import SlybusPage from "./pages/SlybusPage";
+import ResultPage from "./pages/ResultsPage";
+import QuizePage from "./pages/QuizePage";
+import ChatRoomPage from "./pages/chatroom";
+import ProfilePage from "./pages/profile";
 
 
 function App() {
-
+  const { showForms } = useContextApi()
   return (
-    <div className="text-gray-500 min-h-screen overflow-x-hidden">
-      <Appbar />
+    <div className="text-gray-500">
+      <Navbar />
+      {showForms && <Forms showForms={showForms} />}
       <Routes>
         <Route path='/' element={<HomePage />} />
-        <Route path='/online-books' element={<BooksPage />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/results' element={<ResultsPage />} />
-        <Route path='/files' element={<PassPapers />} />
-        <Route path='/register' element={<Register />} />
-        <Route path='/ssd-sylbus' element={<SylbusPage />} />
+        <Route path='/notes' element={<NotesPage />} />
+        <Route path='/books' element={<BooksPage />} />
         <Route path='/profile' element={<ProfilePage />} />
-        <Route path='/terms-and-ondition' element={<TermsAndCondition />} />
-        <Route path='/privacy' element={<Privacy />} />
-        <Route path='/policy' element={<Policy />} />
+        <Route path='/quize' element={<QuizePage />} />
+        <Route path='/ssd-sylbus' element={<SlybusPage />} />
+        <Route path='/chat-room' element={<ChatRoomPage />} />
+        <Route path='/result/:index' element={<ResultPage />} />
       </Routes>
-      <Footer />
     </div>
   );
 }

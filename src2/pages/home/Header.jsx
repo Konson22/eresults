@@ -15,7 +15,7 @@ export default function Header() {
           backgroundSize: "cover",
         }}
       >
-        <div className="md:w-[60%]">
+        <div className="md:w-[60%] w-full">
           <h1 className="md:text-7xl text-white text-2xl text-center mb-4">
             Your gateway to success
           </h1>

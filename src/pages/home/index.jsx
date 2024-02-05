@@ -1,21 +1,23 @@
-import Header from "./Header";
-import RelatedFileSection from "./RelatedFileSection";
-import RelatedOnlineBookSection from "./RelatedOnlineBookSection";
-import StudentRelatedBookSection from "./StudentRelatedBookSection";
+import Footer from "../../components/Footer";
+import BookSection from "./BookSection";
+import HeaderSection from "./HeaderSection";
+import PatnerSection from "./PatnerSection";
+import RentlyUploadedFiles from "./RentlyUploadedFiles";
+import SuggestedBookSection from "./SuggestedBookSection";
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="">
-      <Header />
-      <div className="md:px-[5%] px-2 md:my-6 md:flex">
-        <div className="flex-1 md:mr-5">
-          <StudentRelatedBookSection />
-          <RelatedOnlineBookSection />
+    <div>
+      <HeaderSection />
+      <div className="md:flex md:px-[5%] mt-8">
+        <div className="flex-1 md:mr-8">
+          <SuggestedBookSection />
+          <BookSection />
         </div>
-        <div className="md:w-[30%]">
-          <RelatedFileSection />
-        </div>
+        <RentlyUploadedFiles />
       </div>
+      <PatnerSection />
+      <Footer />
     </div>
   );
 }

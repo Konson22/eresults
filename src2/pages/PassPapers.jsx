@@ -1,4 +1,3 @@
-import { BooksDropDown } from "./sylbus";
 import FileCard from "../components/FileCard";
 
 const booksNames = [
@@ -23,7 +22,6 @@ export default function PassPapers() {
             <label className="block" htmlFor="">
               Subject
             </label>
-            <BooksDropDown names={booksNames} title="All" />
           </div>
           <div className="ml-2">
             <label htmlFor="" className="block">

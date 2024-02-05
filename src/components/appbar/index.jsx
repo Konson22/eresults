@@ -1,60 +1,93 @@
+import { FiBarChart2, FiBell, FiMail } from "react-icons/fi";
+import Logo from "./Logo";
+import MainNavigation from "./MainNavigation";
 import { Link } from "react-router-dom";
-import Icon from "../../utils/Icon";
-import { FaUser } from "react-icons/fa";
 import { useContextApi } from "../../manager/ContextProvider";
-import { FiBarChart2, FiHome, FiSearch } from "react-icons/fi";
-import MobileNavMenu from "./MobileNavMenu";
 import { useState } from "react";
-import { ResultCheck } from "../SearchBar";
+import MobileNavMenu from "./MobileNavMenu";
+import SocialMedia from "../SocialMedia";
 
-export default function Appbar() {
+export default function Navbar() {
   const [openMenu, setOpenMenu] = useState(false);
   const toggleMenu = () => setOpenMenu(!openMenu);
-  const { profile } = useContextApi();
-
+  const { profile, setShowForms } = useContextApi();
   return (
-    <div className="bg-white shadow flex items-center justify-between md:px-[10%] px-4 ">
-      <div className="md:h-[4.5rem] h-[3rem] w-max">
-        <img src={process.env.PUBLIC_URL + "/images/logo-image.jpeg"} alt="" />
+    <div className="">
+      <div className="flex items-center justify-between md:px-[8%] px-3">
+        <Logo />
       </div>
-      <MobileNavMenu openMenu={openMenu} toggleMenu={toggleMenu} />
-      <div className="md:block hidden">
-        <ul className="flex">
-          {links.map((link) => (
-            <li className="">
-              <Link className="block p-4" to={link.path}>
-                {link.text}
-              </Link>
-            </li>
-          ))}
-        </ul>
+      <div className="bg-primary text-white flex items-center justify-between md:px-[8%] px-3 py-3">
+        <MainNavigation />
+        <button className="border border-primary px-4 py-1 rounded-md">
+          Check Results
+        </button>
+        <div className="flex items-center">
+          <ProfileIcon profile={profile} setShowForms={setShowForms} />
+          <div className="md:hidden block ml-5" onClick={toggleMenu}>
+            <FiBarChart2 className="text-2xl -rotate-90" />
+          </div>
+        </div>
       </div>
-      <ResultCheck cName="md:flex hidden border" />
-      <div className="flex items-center">
-        <Icon icon={<FiSearch />} />
-        <Link to="/" className="block mx-6">
-          <Icon icon={<FiHome />} />
-        </Link>
-        <ProfileIcon profile={profile} />
-        <span className="md:hidden block ml-5" onClick={toggleMenu}>
-          <Icon icon={<FiBarChart2 className="-rotate-90" />} />
-        </span>
-      </div>
+    </div>
+    // <>
+    //   <div className="md:block hidden bg-primary text-white px-[5%] py-3">
+    //     <div className="flex items-center justify-between">
+    //       <p>this is some random text</p>
+    //       <SocialMedia />
+    //     </div>
+    //   </div>
+    //   <div className="bg-white flex items-center justify-between px-[5%] border-b-4 border-primary sticky inset-0 z-40">
+    //     <div className="">
+    //       <Logo />
+    //     </div>
+    //     <MainNavigation />
+    //     <MobileNavMenu openMenu={openMenu} toggleMenu={toggleMenu} />
+    //     <div className="flex items-center">
+    //       <button className="border border-primary px-4 py-1 rounded-md">
+    //         Check Results
+    //       </button>
+    //       <ProfileIcon profile={profile} setShowForms={setShowForms} />
+    //       <div className="md:hidden block ml-5" onClick={toggleMenu}>
+    //         <FiBarChart2 className="text-2xl -rotate-90" />
+    //       </div>
+    //     </div>
+    //   </div>
+    // </>
+  );
+}
+
+function ProfileIcon({ profile, setShowForms }) {
+  return !profile ? (
+    <div className="flex items-center">
+      <span className="text-2xl">
+        <FiMail />
+      </span>
+      <span className="text-2xl md:mx-4 mx-4">
+        <FiBell />
+      </span>
+      <Link className="flex items-center" to="/profile">
+        <img
+          className="md:h-10 md:w-10 h-8 w-8 rounded-full md:mr-2"
+          src="./avatars/image-2.png"
+          alt=""
+        />
+        <span className="md:block hidden">Konson</span>
+      </Link>
+    </div>
+  ) : (
+    <div className="flex">
+      <button
+        className="border-primary px-3 py-1"
+        onClick={() => setShowForms("login")}
+      >
+        login
+      </button>
+      <button
+        className="border-primary px-3 py-1"
+        onClick={() => setShowForms("signup")}
+      >
+        Sign up
+      </button>
     </div>
   );
 }
-
-function ProfileIcon({ profile }) {
-  return (
-    <Link className="" to={`${profile ? "/profile" : ""}`}>
-      <Icon icon={<FaUser />} />
-    </Link>
-  );
-}
-
-const links = [
-  { text: "Home", path: "/" },
-  { text: "Books", path: "/online-books" },
-  { text: "SSD Sylbus", path: "/ssd-sylbus" },
-  { text: "Course", path: "/" },
-];

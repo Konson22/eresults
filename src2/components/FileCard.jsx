@@ -4,7 +4,7 @@ export default function FileCard({ files }) {
   return (
     <div>
       {files.map((file) => (
-        <div className="flex items-center mb-3 rounded-md px-2">
+        <div className="bg-white/50 flex items-center mb-3 rounded-md px-3 py-2">
           <div className="h-8 w-8 flex items-center justify-center bg-green-300 rounded-full">
             {file.subject.split("")[0]}
           </div>

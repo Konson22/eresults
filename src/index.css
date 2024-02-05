@@ -5,7 +5,8 @@
 
 
 body {
-    background-color: rgb(249, 249, 249);
+    scroll-behavior: smooth;
+    /* background-color: rgb(235, 241, 241); */
 }
 
 img {
@@ -13,8 +14,13 @@ img {
     height: 100%;
 }
 
+.header {
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url('../public/images/kids-learning2.jpg');
+    background-size: cover;
+    background-position: right;
+}
+
 .form-bg {
-    background-image: url('./assets/svg/wave-haikei.svg');
     background-size: cover;
 }
 
@@ -22,6 +28,13 @@ img {
 @media screen and (max-width:750px) {
 
     .clip {
+        clip-path: ellipse(140% 95% at 50% 0%);
+    }
+
+    .header {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../public/images/kids-learning2.jpg');
+        background-size: cover;
+        background-position: right;
         clip-path: ellipse(140% 95% at 50% 0%);
     }
 }

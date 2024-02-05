@@ -2,13 +2,11 @@ import axios from "axios";
 import BookCard from "../components/BookCard";
 import SearchBar from "../components/SearchBar";
 import { useEffect, useState } from "react";
-import BackBtn from "../utils/BackBtn";
 
 export default function BooksPage() {
   const [isLoading, setIsLoading] = useState(false);
-  const [message, setMessage] = useState("");
   const [books, setBooks] = useState([]);
-  const [query, setQuery] = useState("education");
+  const [query, setQuery] = useState("physics");
 
   const URL = "https://www.googleapis.com/books/v1/volumes?q=";
   useEffect(() => {
@@ -24,7 +22,6 @@ export default function BooksPage() {
           );
         }
       } catch (error) {
-        setMessage("Error Occures!");
       } finally {
         setIsLoading(false);
       }
@@ -45,14 +42,17 @@ export default function BooksPage() {
 
   return (
     <div className="md:px-[8%] px-4 py-4">
-      <div className="md:flex items-center justify-between">
-        <div className="flex">
-          <BackBtn />
-          Books
-        </div>
+      <div className="flex items-center justify-between">
+        <ul className="md:flex hidden items-center">
+          <li className="mr-4">All Books</li>
+          <li className="mr-4">Science</li>
+          <li className="mr-4">Technology</li>
+          <li className="mr-4">Technology</li>
+          <li className="mr-4">Business</li>
+        </ul>
         <SearchBar handleSearch={handleSearch} />
       </div>
-      <div className="grid md:grid-cols-4 grid-cols-2 gap-4 mt-4">
+      <div className="grid md:grid-cols-4 grid-cols-2 md:gap-4 gap-2 mt-4">
         {isLoading &&
           [...new Array(5)].map(() => (
             <div className="w-full">
@@ -65,6 +65,7 @@ export default function BooksPage() {
             (book) =>
               book.volumeInfo.imageLinks && (
                 <BookCard
+                  pageCount={book.volumeInfo.pageCount}
                   image={book.volumeInfo.imageLinks.thumbnail}
                   title={book.volumeInfo.title}
                 />

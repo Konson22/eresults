@@ -1,4 +1,4 @@
-import { useSearchParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axiosInstance from "../hooks/useAxios";
 import { FaDownload } from "react-icons/fa";
@@ -7,27 +7,28 @@ export default function ResultPage() {
   const [message, setMessage] = useState("");
   const [result, setResult] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [query] = useSearchParams();
-  const indexNo = query.get("index");
+  const { index } = useParams();
 
   useEffect(() => {
-    if (indexNo) {
+    if (index) {
       const getResuts = async () => {
         setIsLoading(true);
         try {
           const response = await axiosInstance
-            .post("/results/single", { indexNo })
+            .post("/results/single", { indexNo: index })
             .then((res) => res);
           setResult(response.data);
+          setMessage("");
         } catch (error) {
           setMessage("Wrong Index No!");
+          setResult(null);
         } finally {
           setIsLoading(false);
         }
       };
       getResuts();
     }
-  }, [indexNo]);
+  }, [index]);
 
   const totalMarks = result
     ? result.eng +
