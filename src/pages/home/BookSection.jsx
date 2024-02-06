@@ -1,8 +1,8 @@
 import axios from "axios";
 import { booksCategories } from "../../assets/constance";
-import BookCard from "../../components/BookCard";
 import { useEffect, useState } from "react";
 import { Loader } from "../BooksPage";
+import BookCard from "../../components/cards/BookCard";
 
 export default function BookSection() {
   const [isLoading, setIsLoading] = useState(false);
@@ -52,7 +52,7 @@ export default function BookSection() {
           ))}
         </div>
       </div>
-      <div className="grid md:grid-cols-4 grid-cols-1 gap-4 md:mt-8 mt-5">
+      <div className="grid md:grid-cols-4 grid-cols-2 md:gap-4 gap-2 md:mt-8 mt-5">
         {isLoading && <Loader />}
         {!isLoading &&
           books.length > 0 &&

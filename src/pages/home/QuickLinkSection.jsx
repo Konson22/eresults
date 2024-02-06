@@ -61,7 +61,7 @@ const data = [
   },
   {
     title: "Pass papers",
-    path: "/ssd-sylbus",
+    path: "/pass-papers",
     icon: <FiFileText />,
     bg: "bg-green-100",
     text: "text-green-500",

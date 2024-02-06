@@ -76,11 +76,9 @@ const MobileNavLink = ({ link, toggleMenu }) => {
 const menuVars = {
   initial: {
     clipPath: "circle(0.4% at 0 0)",
-    // clipPath: "ellipse(0% 62% at 0% 50%)",
   },
   animate: {
     clipPath: "circle(140.5% at 99% 0)",
-    // clipPath: "ellipse(100% 68% at 61% 49%)",
     transition: {
       duration: 0.7,
       ease: [0.12, 0, 0.39, 0],
@@ -88,7 +86,6 @@ const menuVars = {
   },
   exit: {
     clipPath: "circle(0.4% at 0 0)",
-    // clipPath: "ellipse(0% 62% at 0% 50%)",
     transition: {
       delay: 0.3,
       duration: 0.7,

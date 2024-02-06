@@ -23,7 +23,7 @@ export default function SlybusPage() {
   }, [books, selectedgrade]);
 
   return (
-    <div className="md:px-[8%] px-4 mt-5">
+    <div className="md:px-[8%] px-4 my-7">
       <div className="flex justify-between">
         <div className="flex items-center md:justify-start justify-between flex-1">
           {booksCategories.map((grade) => (

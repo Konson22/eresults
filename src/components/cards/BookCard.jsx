@@ -1,31 +1,28 @@
-import { FaDownload } from "react-icons/fa";
-
 export default function BookCard({
   book,
   cName = "bg-white",
   hight = "md:h-[200px] h-[180px]",
 }) {
   return (
-    <div
-      className={`${cName} w-full md:block flex md:rounded-md overflow-hidden border md:shadow-md`}
-    >
+    <div className="border bg-white">
       <img
-        className={`${hight} md:w-full w-[120px]`}
-        src={book.coverImage}
+        className={`${cName} h-[130px]`}
+        src={book.imageLinks.thumbnail}
         alt=""
       />
-      <div className="flex-1 flex flex-col">
-        <div className="p-3 flex-1">
-          <h3 className="font-bold">{book.grade}</h3>
-          <span className="line-clamp-3">
-            This is some demo text about this books
-          </span>
-        </div>
-        <div className="flex items-center justify-between md:bg-gray-100 px-3 py-2">
-          <div className="">20 pages</div>
-          <div className="">
-            <FaDownload />
-          </div>
+      <div className="md:px-4 p-2 md:py-3">
+        <p className="md:text-xl line-clamp-1">{book.title}</p>
+        <p className="line-clamp-3">{book.description}</p>
+        <div className="flex items-center justify-between mt-4">
+          <a
+            className="md:px-4 md:py-1 rounded md:bg-green-400 md:text-white text-green-400"
+            href={book.previewLink}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <span className="md:block hidden">view</span>
+          </a>
+          <span className="text-sm">{book.pageCount} Pages</span>
         </div>
       </div>
     </div>

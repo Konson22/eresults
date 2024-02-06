@@ -2,6 +2,7 @@ import { useState, useContext, createContext, useEffect } from "react";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../config";
 import booksJson from "../assets/bookJson.json";
+import axiosInstance from "../hooks/useAxios";
 // import axiosInstance from "../hooks/useAxios";
 
 const contextApi = createContext();
@@ -26,31 +27,7 @@ export default function CotextProvider({ children }) {
     setMessage("");
     setBooks(booksJson);
     const controller = new AbortController();
-    // let isMuted = true;
-    // async function fetchBooks() {
-    //   setIsLoading(true);
-    //   try {
-    //     const results = await axiosInstance("/books").then((res) => res);
-    //     if (isMuted) {
-    //       setBooks(results.data);
-    //       setBooks(booksJson);
-    //     }
-    //   } catch (error) {
-    //     setBooks(booksJson);
-    //     if (
-    //       error.status === 404 ||
-    //       error.status === 403 ||
-    //       error.status === 500
-    //     ) {
-    //       return setMessage(error?.response?.data);
-    //     }
-    //     setMessage("Error Occures!");
-    //   } finally {
-    //     setIsLoading(false);
-    //   }
-    // }
 
-    // fetchBooks();
     const listen = onAuthStateChanged(auth, (user) => {
       if (user) {
         setProfile({
@@ -60,6 +37,7 @@ export default function CotextProvider({ children }) {
           avatar: user.photoURL,
         });
       }
+      verifyAuth();
     });
     return () => {
       listen();
@@ -68,6 +46,21 @@ export default function CotextProvider({ children }) {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const verifyAuth = async () => {
+    try {
+      const results = await axiosInstance.get("/auth").then(async (res) => res);
+      setProfile(results.data);
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response?.data);
+      } else {
+        console.log(error.message);
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const values = {
     isLoading,

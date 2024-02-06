@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { FiChevronDown, FiSearch } from "react-icons/fi";
-import BookCard from "../components/BookCard";
 import axios from "axios";
+import BookCard from "../components/cards/BookCard";
 
 export default function BooksPage() {
   const [isOpen, setIsOpen] = useState(false);

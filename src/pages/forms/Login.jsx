@@ -1,16 +1,52 @@
 import { FaFacebook, FaGoogle } from "react-icons/fa";
-import Input from "./Input";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../../config";
 import { useContextApi } from "../../manager/ContextProvider";
-import { useState } from "react";
-import { FiUser, FiX } from "react-icons/fi";
+import { useRef, useState } from "react";
+import { FiX } from "react-icons/fi";
 import { motion } from "framer-motion";
 import { menuVars } from "./Signup";
+import axiosInstance from "../../hooks/useAxios";
 
 export default function Login() {
-  const { setShowForms, setProfile } = useContextApi();
   const [message, setMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const { setShowForms, setProfile } = useContextApi();
+
+  const emailRef = useRef();
+  const passwordRef = useRef();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setMessage("");
+    setIsLoading(true);
+    const fields = {
+      email: emailRef.current.value,
+      password: passwordRef.current.value,
+    };
+
+    if (fields.email && fields.password) {
+      try {
+        const userCredential = await axiosInstance
+          .post("/auth/login", fields)
+          .then((res) => res);
+        setProfile(userCredential.data);
+        setShowForms(null);
+        console.log(userCredential.data);
+      } catch (error) {
+        if (error.response) {
+          setMessage(error.response.data);
+        } else {
+          setMessage("Opps something went wrong try again");
+        }
+      } finally {
+        setIsLoading(false);
+      }
+    } else {
+      setMessage("Please fill all fields");
+    }
+  };
 
   const GoogleAuthHandler = () => {
     signInWithPopup(auth, new GoogleAuthProvider()).then(
@@ -45,17 +81,32 @@ export default function Login() {
         <FiX />
       </span>
       <div className="flex-1 p-8">
-        <div className="text-center mb-5">
-          <div className="text-3xl rounded-full bg-gray-200 p-3 mb-2 mx-auto w-max">
-            <FiUser />
+        <h3 className="text-center text-xl mb-5">Login</h3>
+        {message && (
+          <div className="text-red-500 my-3 text-center">{message}</div>
+        )}
+        <form onSubmit={handleSubmit}>
+          <div className="mb-5">
+            <input
+              className="md:h-[3rem] h-[2.7rem] bg-gray-5 border-primary shadow-sm rounded-md w-full focus:border-green-500 focus:outline-none px-4"
+              placeholder="E-mail address"
+              name="email"
+              type="email"
+              ref={emailRef}
+            />
           </div>
-          <span className="text-xl">Login</span>
-        </div>
-        {message && message}
-        <form>
-          <Input name="email" placeholder="E-mail" type="email" />
-          <Input name="password" placeholder="Password" type="email" />
-          <button className="text-white bg-green-400 py-2 w-full">Login</button>
+          <div className="mb-5">
+            <input
+              className="md:h-[3rem] h-[2.7rem] bg-gray-5 border-primary shadow-sm rounded-md w-full focus:border-green-500 focus:outline-none px-4"
+              placeholder="Your Name"
+              name="name"
+              type="text"
+              ref={passwordRef}
+            />
+          </div>
+          <button className="text-white bg-green-400 py-2 w-full" type="submit">
+            {isLoading ? "Loading..." : "Login"}
+          </button>
         </form>
         <div className="my-4">
           <h4 className="text-center">Or Login with</h4>

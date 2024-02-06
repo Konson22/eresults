@@ -10,6 +10,7 @@ import ResultPage from "./pages/ResultsPage";
 import QuizePage from "./pages/QuizePage";
 import ChatRoomPage from "./pages/chatroom";
 import ProfilePage from "./pages/profile";
+import PassPapersPage from "./pages/PassPapersPage";
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Route path='/notes' element={<NotesPage />} />
         <Route path='/books' element={<BooksPage />} />
         <Route path='/profile' element={<ProfilePage />} />
+        <Route path='/pass-papers' element={<PassPapersPage />} />
         <Route path='/quize' element={<QuizePage />} />
         <Route path='/ssd-sylbus' element={<SlybusPage />} />
         <Route path='/chat-room' element={<ChatRoomPage />} />
