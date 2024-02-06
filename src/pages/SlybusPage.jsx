@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useContextApi } from "../manager/ContextProvider";
-import BookCard from "../components/BookCard";
 import { SearchBar } from "../components/SearchBar";
+import SlybusCard from "../components/cards/SlybusCard";
 
 export default function SlybusPage() {
   const [selectedgrade, setSelectedGrade] = useState("All Books");
@@ -16,7 +16,8 @@ export default function SlybusPage() {
     if (selectedgrade === "All") {
       setcurrentBooks(books);
     } else {
-      const results = books.filter((book) => book.section === selectedgrade);
+      const results =
+        books && books.filter((book) => book.section === selectedgrade);
       results.length > 0 && setcurrentBooks(results);
     }
   }, [books, selectedgrade]);
@@ -43,14 +44,7 @@ export default function SlybusPage() {
         </h2>
       </div>
       <div className="grid md:grid-cols-4 grid-cols-2 md:gap-4 gap-3 mt-5">
-        {currentBooks &&
-          currentBooks.map((book) => (
-            <BookCard
-              image={book.coverImage}
-              subject={book.grade}
-              title={book.subject}
-            />
-          ))}
+        {currentBooks && currentBooks.map((book) => <SlybusCard book={book} />)}
       </div>
     </div>
   );
