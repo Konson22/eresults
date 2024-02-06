@@ -15,12 +15,12 @@ export default function BookCard({
         <p className="line-clamp-3">{book.description}</p>
         <div className="flex items-center justify-between mt-4">
           <a
-            className="md:px-4 md:py-1 rounded md:bg-green-400 md:text-white text-green-400"
+            className="md:px-4 px-3 py-1 rounded md:bg-green-400 md:text-white text-green-400"
             href={book.previewLink}
             target="_blank"
             rel="noreferrer"
           >
-            <span className="md:block hidden">view</span>
+            <span className="">view</span>
           </a>
           <span className="text-sm">{book.pageCount} Pages</span>
         </div>
